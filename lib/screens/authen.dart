@@ -49,39 +49,44 @@ class _AuthenState extends State<Authen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomPadding: false,
         body: Container(
-      margin: EdgeInsets.only(top: 70.0),
-      alignment: Alignment(0, -1),
-      child: Column(
-        children: <Widget>[
-          showLogo(),
-          Container(
-            margin: EdgeInsets.only(top: 20.0),
-            child: showTitle(),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 50.0, right: 50.0),
-            child: showUser(),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 50.0, right: 50.0),
-            child: showPassword(),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 50.0, right: 50.0,top: 20.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: showSignIn(),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.white, Colors.yellow[50]],
+                  begin: Alignment(-1, -1))),
+          padding: EdgeInsets.only(top: 70.0),
+          alignment: Alignment(0, -1),
+          child: Column(
+            children: <Widget>[
+              showLogo(),
+              Container(
+                margin: EdgeInsets.only(top: 20.0),
+                child: showTitle(),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 50.0, right: 50.0),
+                child: showUser(),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 50.0, right: 50.0),
+                child: showPassword(),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 50.0, right: 50.0, top: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: showSignIn(),
+                    ),
+                    Expanded(
+                      child: showSignUp(),
+                    )
+                  ],
                 ),
-                Expanded(
-                  child: showSignUp(),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    ));
+              )
+            ],
+          ),
+        ));
   }
 }
