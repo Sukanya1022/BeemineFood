@@ -12,7 +12,7 @@ class _RegisterState extends State<Register> {
 
   String name, user, password;
 
-  Widget uploadBtn() {
+  Widget uploadBtn(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.cloud_upload),
       onPressed: () {
@@ -20,19 +20,24 @@ class _RegisterState extends State<Register> {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
           print('name = $name, user = $user, password = $password');
-          uploadValueToServer();
+          uploadValueToServer(context);
         }
       },
     );
   }
 
-  void uploadValueToServer() async {
+  void uploadValueToServer(BuildContext context) async {
     String urlPHP =
         'https://www.androidthai.in.th/tid/addUserUng.php?isAdd=true&Name=$name&User=$user&Password=$password';
 
         var response = await get(urlPHP);
         var resultString = json.decode(response.body);
         print('resultString ==> $resultString');
+
+        if (resultString.toString() == 'true') {
+          // create pop
+          Navigator.of(context).pop();
+        }
   }
 
   Widget nameTextFormField() {
@@ -84,7 +89,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Register'),
-        actions: <Widget>[uploadBtn()],
+        actions: <Widget>[uploadBtn(context)],
       ),
       body: Form(
         key: formKey,
